@@ -165,7 +165,7 @@ function App() {
     setIsAutoScrolling(false);
   };
 
-  const handleMouseLeave = () => {
+  //const handleMouseLeave = () => {
     setIsAutoScrolling(true);
   };
 
