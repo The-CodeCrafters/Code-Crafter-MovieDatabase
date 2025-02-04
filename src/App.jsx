@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-/*import { useState, useEffect, useRef } from 'react';
-=======
 import { useState, useEffect, useRef } from 'react';
->>>>>>> 6e8a5cf (pusing functions)
 import './App.css';
 
 function App() {
@@ -23,11 +19,7 @@ function App() {
   const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
   const YOUTUBE_API_KEY = 'YOUR_YOUTUBE_API_KEY_HERE'; // Add your YouTube API key here
 
-<<<<<<< HEAD
   useEffect(() => {
-=======
-  /*useEffect(() => {
->>>>>>> 6e8a5cf (pusing functions)
     let animationFrameId;
     let startTime;
 
@@ -197,17 +189,17 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    if (showGenres) {
+  //useEffect(() => {
+    //if (showGenres) {
       document.addEventListener('click', handleClickOutside);
-    } else {
+    //} else {
       document.removeEventListener('click', handleClickOutside);
-    }
+    //}
 
-    return () => {
+    //return () => {
       document.removeEventListener('click', handleClickOutside);
-    };
-  }, [showGenres]);
+    //};
+  //}, [showGenres]);
 
   return (
     <div className="app">
@@ -294,7 +286,7 @@ function App() {
                     onClick={() => getMovieDetails(movie.imdbID)}
                   >
                     <img
-                      src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/400'}
+                      //src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/400'}
                       alt={movie.Title}
                     />
                     <h3>{movie.Title}</h3>
