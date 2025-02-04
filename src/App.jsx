@@ -107,7 +107,7 @@ function App() {
     }
   };
 
-  //const searchMovies = async (title) => {
+  const searchMovies = async (title) => {
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}&s=${title}`);
