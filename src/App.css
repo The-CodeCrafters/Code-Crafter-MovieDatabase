@@ -183,8 +183,7 @@ html, body {
   padding: 2rem 0;
   background-color: transparent;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
+  
 
 .horizontal-grid::-webkit-scrollbar {
   display: none; /* WebKit */
