@@ -175,7 +175,20 @@ html, body {
   margin-top: 2rem;
 }
 
-/*.horizontal-grid {
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.horizontal-grid {
+  position: relative;
+  align-items: center;
+  scroll-behavior: smooth;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -183,11 +196,40 @@ html, body {
   padding: 2rem 0;
   background-color: transparent;
   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scroll-arrow {
+  position: fixed; /* Change to fixed to position relative to the viewport */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(17, 17, 17);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
   
+.scroll-arrow.left {
+  left: 20px; /* Always stay on the left side of the screen */
+}
+
+.scroll-arrow.right {
+  right: 20px; /* Always stay on the right side of the screen */
+}
+
+.scroll-arrow:hover {
+  opacity: 1;
+}
+
 
 .horizontal-grid::-webkit-scrollbar {
   display: none; /* WebKit */
 }
+
 
 .grid {
   display: grid;

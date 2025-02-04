@@ -1,6 +1,55 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
+function TrailerButton({ trailerId, title }) {
+  const [showTrailer, setShowTrailer] = useState(false);
+
+  const handleOpenTrailer = () => {
+    if (trailerId) {
+      setShowTrailer(true);
+    } else {
+      alert('No trailer available for this movie');
+    }
+  };
+
+  const handleCloseTrailer = () => {
+    setShowTrailer(false);
+  };
+
+  return (
+    <>
+      <button 
+        className="trailer-button" 
+        onClick={handleOpenTrailer}
+      >
+        Watch Trailer
+      </button>
+     
+      {showTrailer && trailerId && (
+        <div className="trailer-modal">
+          <div className="trailer-modal-content">
+            <button 
+              className="trailer-close-btn" 
+              onClick={handleCloseTrailer}
+            >
+              ×
+            </button>
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${trailerId}?autoplay=1`}
+              title={`${title} Trailer`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [recentMovies, setRecentMovies] = useState([]);
@@ -17,7 +66,7 @@ function App() {
 
   const API_KEY = '3ba21b02';
   const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
-  const YOUTUBE_API_KEY = 'YOUR_YOUTUBE_API_KEY_HERE'; // Add your YouTube API key here
+  const YOUTUBE_API_KEY = 'AIzaSyArG4ZhKvt6yOI6YrEyryyBy12ZYRy6wZU';
 
   useEffect(() => {
     let animationFrameId;
@@ -98,12 +147,12 @@ function App() {
 
   const getMovieDetails = async (id) => {
     try {
-          const response = await fetch(`${API_URL}&i=${id}`);
-          const data = await response.json();
-          const trailerId = await fetchTrailer(data.Title);
-          setSelectedMovie({ ...data, trailerId });
-        } catch (error) {
-          console.error('Error fetching movie details:', error);
+      const response = await fetch(`${API_URL}&i=${id}`);
+      const data = await response.json();
+      const trailerId = await fetchTrailer(data.Title);
+      setSelectedMovie({ ...data, trailerId });
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
     }
   };
 
@@ -215,17 +264,16 @@ function App() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button onClick={() => searchMovies(searchTerm)}>Search</button>
-          <button className="clear-button" onClick={clearSearch}>Clear</button>
           <button onClick={toggleGenres}>Genres</button>
           <button onClick={fetchTvShows}>Tv shows</button>
-          
+          <button className="clear-button" onClick={clearSearch}>Clear</button>
         </div>
         <div className="theme-switcher">
           <button>Theme</button>
           <div className="theme-switcher-content">
             <button onClick={() => handleThemeChange('dark-theme')}>Dark</button>
             <button onClick={() => handleThemeChange('light-theme')}>Light</button>
-            
+            <button onClick={() => handleThemeChange('standard-theme')}>Standard</button>
           </div>
         </div>
       </div>
@@ -260,6 +308,11 @@ function App() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
+
+               <button className="scroll-arrow left" onClick={() => scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' })}>
+                 &#9664;
+               </button>
+
                 {recentMovies.map((movie, index) => (
                   <div
                     className={`movie-card ${index === Math.floor(recentMovies.length / 2) ? 'middle' : ''}`}
@@ -273,6 +326,9 @@ function App() {
                     <h3>{movie.Title}</h3>
                   </div>
                 ))}
+                 <button className="scroll-arrow right" onClick={() => scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' })}>
+                  &#9654;
+                 </button>
               </div>
             </section>
 
@@ -298,7 +354,7 @@ function App() {
         )}
 
         {showGenres && (
-          <div className="genres-container">
+          <div className="genres-container" ref={genresContainerRef}>
             <ul>
               <li onClick={() => fetchMoviesByGenre('Action')}>Action</li>
               <li onClick={() => fetchMoviesByGenre('Adventure')}>Adventure</li>
@@ -316,7 +372,7 @@ function App() {
               {/* Add more genres as needed */}
             </ul>
           </div>
-        )} 
+        )}
 
         {selectedMovie && (
           <div className="movie-details-modal">
@@ -330,7 +386,7 @@ function App() {
                 <div className="details">
                   <h2>{selectedMovie.Title}</h2>
                   <p><strong>Released:</strong> {selectedMovie.Released}</p>
-                  //<p><strong>Runtime:</strong> {selectedMovie.Runtime}</p>
+                  <p><strong>Runtime:</strong> {selectedMovie.Runtime}</p>
                   <p><strong>Genre:</strong> {selectedMovie.Genre}</p>
                   <p><strong>Director:</strong> {selectedMovie.Director}</p>
                   <p><strong>Actors:</strong> {selectedMovie.Actors}</p>
