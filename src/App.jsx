@@ -19,7 +19,7 @@ function App() {
   const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
   const YOUTUBE_API_KEY = 'YOUR_YOUTUBE_API_KEY_HERE'; // Add your YouTube API key here
 
-  //useEffect(() => {
+  useEffect(() => {
     let animationFrameId;
     let startTime;
 
