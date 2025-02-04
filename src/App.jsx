@@ -98,16 +98,16 @@ function App() {
 
   const getMovieDetails = async (id) => {
     try {
-      const response = await fetch(`${API_URL}&i=${id}`);
-      const data = await response.json();
-      const trailerId = await fetchTrailer(data.Title);
-      setSelectedMovie({ ...data, trailerId });
-    } catch (error) {
-      console.error('Error fetching movie details:', error);
+          const response = await fetch(`${API_URL}&i=${id}`);
+          const data = await response.json();
+          const trailerId = await fetchTrailer(data.Title);
+          setSelectedMovie({ ...data, trailerId });
+        } catch (error) {
+          console.error('Error fetching movie details:', error);
     }
   };
 
-  const searchMovies = async (title) => {
+  //const searchMovies = async (title) => {
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}&s=${title}`);
