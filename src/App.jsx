@@ -189,17 +189,17 @@ function App() {
     }
   };
 
-  //useEffect(() => {
-    //if (showGenres) {
+  useEffect(() => {
+    if (showGenres) {
       document.addEventListener('click', handleClickOutside);
-    //} else {
+    } else {
       document.removeEventListener('click', handleClickOutside);
-    //}
+    }
 
-    //return () => {
+    return () => {
       document.removeEventListener('click', handleClickOutside);
-    //};
-  //}, [showGenres]);
+    };
+  }, [showGenres]);
 
   return (
     <div className="app">
@@ -318,7 +318,7 @@ function App() {
           </div>
         )} 
 
-      /*  {selectedMovie && (
+        {selectedMovie && (
           <div className="movie-details-modal">
             <div className="modal-content">
               <button className="close-btn" onClick={handleCloseModal}>×</button>
@@ -330,7 +330,7 @@ function App() {
                 <div className="details">
                   <h2>{selectedMovie.Title}</h2>
                   <p><strong>Released:</strong> {selectedMovie.Released}</p>
-                  <p><strong>Runtime:</strong> {selectedMovie.Runtime}</p>
+                  //<p><strong>Runtime:</strong> {selectedMovie.Runtime}</p>
                   <p><strong>Genre:</strong> {selectedMovie.Genre}</p>
                   <p><strong>Director:</strong> {selectedMovie.Director}</p>
                   <p><strong>Actors:</strong> {selectedMovie.Actors}</p>
