@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
-
+ 
 function TrailerButton({ trailerId, title }) {
   const [showTrailer, setShowTrailer] = useState(false);
-
+ 
   const handleOpenTrailer = () => {
     if (trailerId) {
       setShowTrailer(true);
@@ -11,15 +11,15 @@ function TrailerButton({ trailerId, title }) {
       alert('No trailer available for this movie');
     }
   };
-
+ 
   const handleCloseTrailer = () => {
     setShowTrailer(false);
   };
-
+ 
   return (
     <>
-      <button 
-        className="trailer-button" 
+      <button
+        className="trailer-button"
         onClick={handleOpenTrailer}
       >
         Watch Trailer
@@ -28,8 +28,8 @@ function TrailerButton({ trailerId, title }) {
       {showTrailer && trailerId && (
         <div className="trailer-modal">
           <div className="trailer-modal-content">
-            <button 
-              className="trailer-close-btn" 
+            <button
+              className="trailer-close-btn"
               onClick={handleCloseTrailer}
             >
               ×
@@ -49,7 +49,29 @@ function TrailerButton({ trailerId, title }) {
     </>
   );
 }
-
+ 
+function displayMovies(movies) {
+    const movieContainer = document.getElementById('movie-container');
+    movieContainer.innerHTML = '';
+ 
+    movies.forEach(movie => {
+        if (movie.title && movie.picture) {
+            const movieElement = document.createElement('div');
+            movieElement.className = 'movie';
+ 
+            const movieTitle = document.createElement('h2');
+            movieTitle.textContent = movie.title;
+            movieElement.appendChild(movieTitle);
+ 
+            const moviePicture = document.createElement('img');
+            moviePicture.src = movie.picture;
+            movieElement.appendChild(moviePicture);
+ 
+            movieContainer.appendChild(movieElement);
+        }
+    });
+}
+ 
 function App() {
   const [movies, setMovies] = useState([]);
   const [recentMovies, setRecentMovies] = useState([]);
@@ -60,50 +82,50 @@ function App() {
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [theme, setTheme] = useState('dark-theme');
   const [showGenres, setShowGenres] = useState(false);
-
-  
+ 
+ 
   const scrollContainerRef1 = useRef(null);
   const scrollContainerRef2 = useRef(null);
   const genresContainerRef = useRef(null);
-
+ 
   const API_KEY = '3ba21b02';
   const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
   const YOUTUBE_API_KEY = 'AIzaSyArG4ZhKvt6yOI6YrEyryyBy12ZYRy6wZU';
-
+ 
   useEffect(() => {
     let animationFrameId;
     let startTime;
-
+ 
     const autoScroll = (timestamp) => {
       if (!isAutoScrolling || !scrollContainerRef.current) return;
-
+ 
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
-
+ 
       const scrollContainer = scrollContainerRef.current;
       const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
       const scrollAmount = (progress / 50) % maxScroll;
-
+ 
       scrollContainer.scrollLeft = scrollAmount;
-
+ 
       if (scrollAmount >= maxScroll) {
         startTime = timestamp;
       }
-
+ 
       animationFrameId = requestAnimationFrame(autoScroll);
     };
-
+ 
     if (isAutoScrolling) {
       animationFrameId = requestAnimationFrame(autoScroll);
     }
-
+ 
     return () => {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
     };
   }, [isAutoScrolling]);
-
+ 
   const fetchRecentMovies = async () => {
     try {
       const year = new Date().getFullYear();
@@ -114,9 +136,9 @@ function App() {
       console.error('Error fetching recent movies:', error);
     }
   };
-
-  
-
+ 
+ 
+ 
   const fetchYearMovies = async (year) => {
     try {
       const response = await fetch(`${API_URL}&s=movie&y=${year}&type=movie`);
@@ -127,7 +149,7 @@ function App() {
       return [];
     }
   };
-
+ 
   const fetchTrailer = async (movieTitle) => {
     try {
       console.log('Fetching trailer for:', movieTitle);
@@ -148,7 +170,7 @@ function App() {
       return null;
     }
   };
-
+ 
   const getMovieDetails = async (id) => {
     try {
       const response = await fetch(`${API_URL}&i=${id}`);
@@ -159,7 +181,7 @@ function App() {
       console.error('Error fetching movie details:', error);
     }
   };
-
+ 
   const searchMovies = async (title) => {
     setLoading(true);
     try {
@@ -172,7 +194,7 @@ function App() {
       setLoading(false);
     }
   };
-
+ 
   const fetchMoviesByGenre = async (genre) => {
     setLoading(true);
     try {
@@ -185,8 +207,8 @@ function App() {
       setLoading(false);
     }
   };
-  
-
+ 
+ 
   const fetchTvShows = async () => {
     setLoading(true);
     try {
@@ -199,12 +221,12 @@ function App() {
       setLoading(false);
     }
   };
-
+ 
   const clearSearch = () => {
     setMovies([]);
     setSearchTerm('');
   };
-
+ 
   useEffect(() => {
     fetchRecentMovies();
     const loadMovies = async () => {
@@ -214,31 +236,31 @@ function App() {
     };
     loadMovies();
   }, []);
-
+ 
   const handleMouseEnter = () => {
     setIsAutoScrolling(false);
   };
-
+ 
   const handleMouseLeave = () => {
     setIsAutoScrolling(true);
   };
-
+ 
   const handleCloseModal = () => {
     setSelectedMovie(null);
   };
-
+ 
   const handleThemeChange = (newTheme) => {
     setTheme(newTheme);
     document.body.className = newTheme;
   };
-  
-
+ 
+ 
   const toggleGenres = () => {
     setShowGenres((prevState) => !prevState);
     console.log("Genres visibility:", !showGenres);
   };
-
-
+ 
+ 
   const handleClickOutside = (event) => {
     setTimeout(() => {
       if (genresContainerRef.current && !genresContainerRef.current.contains(event.target)) {
@@ -246,20 +268,20 @@ function App() {
       }
     }, 6666);
   };
-  
-
+ 
+ 
   useEffect(() => {
     if (showGenres) {
       document.addEventListener('click', handleClickOutside);
     } else {
       document.removeEventListener('click', handleClickOutside);
     }
-
+ 
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [showGenres]);
-
+ 
   return (
     <div className="app">
       <div className="app-header">
@@ -287,7 +309,7 @@ function App() {
           </div>
         </div>
       </div>
-
+ 
       <div className="app-content">
         {movies.length > 0 ? (
           <section className="search-results">
@@ -318,7 +340,7 @@ function App() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-
+ 
 <button
   className="scroll-arrow left"
   onClick={() => {
@@ -329,7 +351,7 @@ function App() {
 >
   &#9664;
 </button>
-
+ 
                 {recentMovies.map((movie, index) => (
                   <div
                     className={`movie-card ${index === Math.floor(recentMovies.length / 2) ? 'middle' : ''}`}
@@ -355,7 +377,7 @@ function App() {
 </button>
               </div>
             </section>
-
+ 
             <section className="latest-movies">
               <h2>Latest Movies</h2>
               <div
@@ -388,7 +410,7 @@ function App() {
                     <h3>{movie.Title}</h3>
                   </div>
                 ))}
-
+ 
 <button
   className="scroll-arrow right"
   onClick={() => {
@@ -399,14 +421,14 @@ function App() {
 >
   &#9654;
 </button>
-                
+               
              </div>
              </div>
             </section>
           </>
         )}
-        
-
+       
+ 
         {showGenres && (
           <div className="genres-container" ref={genresContainerRef}>
             <ul>
@@ -427,7 +449,7 @@ function App() {
             </ul>
           </div>
         )}
-
+ 
         {selectedMovie && (
           <div className="movie-details-modal">
             <div className="modal-content">
@@ -446,7 +468,7 @@ function App() {
                   <p><strong>Actors:</strong> {selectedMovie.Actors}</p>
                   <p><strong>Plot:</strong> {selectedMovie.Plot}</p>
                   <p><strong>Rating:</strong> {selectedMovie.imdbRating}</p>
-                  
+                 
                   <TrailerButton
                     trailerId={selectedMovie.trailerId}
                     title={selectedMovie.Title}
@@ -456,7 +478,7 @@ function App() {
             </div>
           </div>
         )}
-
+ 
         {loading && (
           <div className="loading">Loading...</div>
         )}
@@ -464,5 +486,5 @@ function App() {
     </div>
   );
 }
-
+ 
 export default App;
