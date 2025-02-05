@@ -1,13 +1,6 @@
-To add a link to the website in the README file, you can place it in a section like "Website" or "Live Demo". Here's how you can modify your README to include it:
-
-```markdown
 # MovieBase
 
 MovieBase is a web application built with React and Vite that allows users to search for movies, view recent releases, and explore movies by genre. The application leverages the OMDB API to fetch movie data and the YouTube API to fetch movie trailers.
-
-## Website
-
-Visit the live application at: [MovieBase](https://yourwebsite.com)
 
 ## Features
 
@@ -51,29 +44,34 @@ Visit the live application at: [MovieBase](https://yourwebsite.com)
 ## Installation
 
 1. Clone the repository:
-   ```sh
+   
+sh
    git clone https://github.com/your-username/moviebase.git
-   ```
+
 
 2. Navigate to the project directory:
-   ```sh
+   
+sh
    cd movie-database-app
-   ```
+
 
 3. Install dependencies:
-   ```sh
+   
+sh
    npm install
-   ```
+
 
 4. Create a .env file in the root directory and add your YouTube API key:
-   ```env
+   
+env
    REACT_APP_YOUTUBE_API_KEY=YOUR_YOUTUBE_API_KEY
-   ```
+
 
 5. Start the development server:
-   ```sh
+   
+sh
    npm start
-   ```
+
 
 ## Project Structure
 
@@ -99,6 +97,6 @@ Visit the live application at: [MovieBase](https://yourwebsite.com)
 - **[Moloko Rakgoale](https://github.com/Moloko-DevOps95)** - Feature Development
 - **[Philani Mancotywa](https://github.com/PhilaniMant)** - Design & UI
 - **[Bennet Ramphisa](https://github.com/Bennet09)** - API Integration
-```
 
-Make sure to replace `https://yourwebsite.com` with the actual URL of your live application.
+## Website
+ `https://yourwebsite.com`
