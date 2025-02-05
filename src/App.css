@@ -24,6 +24,9 @@ body.standard-theme {
 
 body {
   background-color: var(--background-color);
+  background-image: url(./assets/img/erik-mclean-8SeJUmfahu0-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -58,10 +61,8 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.6); 
   padding: 1.5rem 3rem;
-  background-image: url(./assets/img/erik-mclean-8SeJUmfahu0-unsplash.jpg);
-  background-size: cover;
-  background-position: center;
   color: var(--text-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -175,19 +176,64 @@ html, body {
   margin-top: 2rem;
 }
 
-/*.horizontal-grid {
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.horizontal-grid {
+  position: relative;
+  align-items: center;
+  scroll-behavior: smooth;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 1rem;
   padding: 2rem 0;
   background-color: transparent;
-  scrollbar-width: none; /* Firefox */
+  -webkit-scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; /* Chrome, Safari, newer versions of Opera */  -ms-overflow-style: none; /* IE 10+ */  -webkit-scrollbar {
+    display: none; /* WebKit */
+  }
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scroll-arrow {
+  position: fixed; /* Change to fixed to position relative to the viewport */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(17, 17, 17);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
   
+.scroll-arrow.left {
+  left: 20px; /* Always stay on the left side of the screen */
+}
+
+.scroll-arrow.right {
+  right: 20px; /* Always stay on the right side of the screen */
+}
+
+.scroll-arrow:hover {
+  opacity: 1;
+}
+
 
 .horizontal-grid::-webkit-scrollbar {
   display: none; /* WebKit */
 }
+
 
 .grid {
   display: grid;
