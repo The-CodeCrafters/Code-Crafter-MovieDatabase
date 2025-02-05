@@ -61,7 +61,9 @@ function App() {
   const [theme, setTheme] = useState('dark-theme');
   const [showGenres, setShowGenres] = useState(false);
 
-  const scrollContainerRef = useRef(null);
+  
+  const scrollContainerRef1 = useRef(null);
+  const scrollContainerRef2 = useRef(null);
   const genresContainerRef = useRef(null);
 
   const API_KEY = '3ba21b02';
@@ -112,6 +114,8 @@ function App() {
       console.error('Error fetching recent movies:', error);
     }
   };
+
+  
 
   const fetchYearMovies = async (year) => {
     try {
@@ -181,6 +185,7 @@ function App() {
       setLoading(false);
     }
   };
+  
 
   const fetchTvShows = async () => {
     setLoading(true);
@@ -226,17 +231,22 @@ function App() {
     setTheme(newTheme);
     document.body.className = newTheme;
   };
+  
 
   const toggleGenres = () => {
     setShowGenres((prevState) => !prevState);
     console.log("Genres visibility:", !showGenres);
   };
 
+
   const handleClickOutside = (event) => {
-    if (genresContainerRef.current && !genresContainerRef.current.contains(event.target)) {
-      setShowGenres(false);
-    }
+    setTimeout(() => {
+      if (genresContainerRef.current && !genresContainerRef.current.contains(event.target)) {
+        setShowGenres(false);
+      }
+    }, 6666);
   };
+  
 
   useEffect(() => {
     if (showGenres) {
@@ -303,15 +313,22 @@ function App() {
             <section className="recent-movies">
               <h2>Recent Releases</h2>
               <div
-                ref={scrollContainerRef}
+                ref={scrollContainerRef1}
                 className="horizontal-grid"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
 
-               <button className="scroll-arrow left" onClick={() => scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' })}>
-                 &#9664;
-               </button>
+<button
+  className="scroll-arrow left"
+  onClick={() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  }}
+>
+  &#9664;
+</button>
 
                 {recentMovies.map((movie, index) => (
                   <div
@@ -326,14 +343,37 @@ function App() {
                     <h3>{movie.Title}</h3>
                   </div>
                 ))}
-                 <button className="scroll-arrow right" onClick={() => scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' })}>
-                  &#9654;
-                 </button>
+                <button
+  className="scroll-arrow right"
+  onClick={() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  }}
+>
+  &#9654;
+</button>
               </div>
             </section>
 
             <section className="latest-movies">
               <h2>Latest Movies</h2>
+              <div
+          ref={scrollContainerRef2}
+          className="horizontal-grid"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+           <button
+  className="scroll-arrow left"
+  onClick={() => {
+    if (scrollContainerRef2.current) {
+      scrollContainerRef2.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  }}
+>
+  &#9664;
+</button>
               <div className="grid">
                 {latestMovies.map((movie) => (
                   <div
@@ -348,10 +388,24 @@ function App() {
                     <h3>{movie.Title}</h3>
                   </div>
                 ))}
-              </div>
+
+<button
+  className="scroll-arrow right"
+  onClick={() => {
+    if (scrollContainerRef2.current) {
+      scrollContainerRef2.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  }}
+>
+  &#9654;
+</button>
+                
+             </div>
+             </div>
             </section>
           </>
         )}
+        
 
         {showGenres && (
           <div className="genres-container" ref={genresContainerRef}>
