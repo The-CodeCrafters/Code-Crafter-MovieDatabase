@@ -6,6 +6,6 @@ export default defineConfig({
  server: {
     host: true,
     port: process.env.PORT || 5173,
-    allowedHosts: ['movie-database-smcf.onrender.com'],
+    allowedHosts: ['code-crafter-moviedatabase-41yc.onrender.com'],
   },
 });
