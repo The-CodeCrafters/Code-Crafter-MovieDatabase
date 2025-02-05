@@ -45,31 +45,26 @@ MovieBase is a web application built with React and Vite that allows users to se
 
 1. Clone the repository:
    
-sh
    git clone https://github.com/your-username/moviebase.git
 
 
 2. Navigate to the project directory:
    
-sh
    cd movie-database-app
 
 
 3. Install dependencies:
    
-sh
    npm install
 
 
 4. Create a .env file in the root directory and add your YouTube API key:
    
-env
    REACT_APP_YOUTUBE_API_KEY=YOUR_YOUTUBE_API_KEY
 
 
 5. Start the development server:
    
-sh
    npm start
 
 
