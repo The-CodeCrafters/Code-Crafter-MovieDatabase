@@ -178,13 +178,28 @@ html, body {
   margin-top: 2rem;
 }
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+  50% {
+    opacity: 0.5;
+  }
   to {
     opacity: 1;
+  }
+}
+
+.recent-movies .horizontal-grid {
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 6)); /* Adjust based on the width of the movie card and number of visible cards */
   }
 }
 
@@ -230,6 +245,25 @@ html, body {
   opacity: 1;
 }
 
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.scroll-button.left {
+  left: 0;
+}
+
+.scroll-button.right {
+  right: 0;
+}
 
 .horizontal-grid::-webkit-scrollbar {
   display: none; /* WebKit */
