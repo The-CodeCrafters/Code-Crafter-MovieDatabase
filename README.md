@@ -90,13 +90,9 @@ MovieBase is a web application built with React and Vite that allows users to se
 
 ## Contributors
 
-- **[Nondumiso Thwala](https://github.com/your-username)** - Project Lead
-- **[Moloko Rakgoale](https://github.com/contributor-name)** - Feature Development
-- **[Philani Mancotywa](https://github.com/contributor-name)** - Design & UI
-- **[Bennet Ramphisa](https://github.com/contributor-name)** - API Integration
+- **[Nondumiso Thwala](https://github.com/Nondumiso98)** - Project Lead
+- **[Moloko Rakgoale](https://github.com/Moloko-DevOps95)** - Feature Development
+- **[Philani Mancotywa](https://github.com/PhilaniMant)** - Design & UI
+- **[Bennet Ramphisa](https://github.com/Bennet09)** - API Integration
 
-We appreciate all contributors who made this project possible. Feel free to fork and contribute!
 
----
-
-Let me know if you'd like to adjust the content further!
