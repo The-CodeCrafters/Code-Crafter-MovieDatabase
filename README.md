@@ -1,3 +1,5 @@
+
+
 # MovieBase
 
 MovieBase is a web application built with React and Vite that allows users to search for movies, view recent releases, and explore movies by genre. The application leverages the OMDB API to fetch movie data and the YouTube API to fetch movie trailers.
@@ -29,7 +31,7 @@ MovieBase is a web application built with React and Vite that allows users to se
 
       Select a movie card to view its details.
 
-      Click Tv shows to display a list of TV shows.
+      Click TV Shows to display a list of TV shows.
          
       Use the Genres button to browse movies by genre.
          
@@ -41,48 +43,32 @@ MovieBase is a web application built with React and Vite that allows users to se
 
       YouTube API: Fetches official movie trailers.
 
-### Installation
+## Installation
 
 1. Clone the repository:
    ```sh
    git clone https://github.com/your-username/moviebase.git
-   Clone the repository:
+   ```
 
-   git clone <repository-url>
-
-   Navigate to the project directory:
-
+2. Navigate to the project directory:
+   ```sh
    cd movie-database-app
+   ```
 
-   Install dependencies:
-
+3. Install dependencies:
+   ```sh
    npm install
+   ```
 
-   Create a .env file in the root directory and add your YouTube API key:
-
+4. Create a .env file in the root directory and add your YouTube API key:
+   ```env
    REACT_APP_YOUTUBE_API_KEY=YOUR_YOUTUBE_API_KEY
+   ```
 
-   Start the development server:
-
-## Usage
-
-      Enter a movie title in the search bar and click Search.
-
-      Click Clear to reset the search.
-
-      Select a movie card to view its details.
-
-      Click Tv shows to display a list of TV shows.
-
-      Use the Genres button to browse movies by genre.
-
-      Toggle themes by selecting Light or Dark.
-
-## APIs
-
-      OMDb API: Provides movie data such as title, genre, director, and plot.
-
-      YouTube API: Fetches official movie trailers.
+5. Start the development server:
+   ```sh
+   npm start
+   ```
 
 ## Project Structure
 
@@ -96,12 +82,21 @@ MovieBase is a web application built with React and Vite that allows users to se
 
 ## Improvements
 
-      Error Handling: Enhance error management for API requests.
+- Error Handling: Enhance error management for API requests.
+- User Authentication: Allow personalized movie recommendations.
+- Search Filtering: Add advanced filtering options.
+- Performance Optimization: Improve autoscrolling logic and lazy load images.
+- Responsive Design: Enhance layout for mobile devices.
 
-      User Authentication: Allow personalized movie recommendations.
+## Contributors
 
-      Search Filtering: Add advanced filtering options.
+- **[Nondumiso Thwala](https://github.com/your-username)** - Project Lead
+- **[Moloko Rakgoale](https://github.com/contributor-name)** - Feature Development
+- **[Philani Mancotywa](https://github.com/contributor-name)** - Design & UI
+- **[Bennet Ramphisa](https://github.com/contributor-name)** - API Integration
 
-      Performance Optimization: Improve autoscrolling logic and lazy load images.
+We appreciate all contributors who made this project possible. Feel free to fork and contribute!
 
-      Responsive Design: Enhance layout for mobile devices.
+---
+
+Let me know if you'd like to adjust the content further!
