@@ -318,7 +318,8 @@ function App() {
           <div className="theme-switcher-content">
             <button onClick={() => handleThemeChange('dark-theme')}>Dark</button>
             <button onClick={() => handleThemeChange('light-theme')}>Light</button>
-            <button onClick={() => handleThemeChange('standard-theme')}>Standard</button>
+          
+            
           </div>
         </div>
       </div>
@@ -347,7 +348,7 @@ function App() {
           <>
             <section className="recent-movies">
               <h2>Recent Releases</h2>
-              <button className="scroll-button left" onClick={() => scrollLeft(scrollContainerRef1)}>‹</button>
+             
               <div
                 ref={scrollContainerRef1}
                 className="horizontal-grid"
@@ -368,12 +369,12 @@ function App() {
                   </div>
                 ))}
               </div>
-              <button className="scroll-button right" onClick={() => scrollRight(scrollContainerRef1)}>›</button>
+             
             </section>
 
             <section className="latest-movies">
               <h2>Latest Movies</h2>
-              <button className="scroll-button left" onClick={() => scrollLeft(scrollContainerRef2)}>‹</button>
+             
               <div
                 ref={scrollContainerRef2}
                 className="horizontal-grid"
@@ -396,7 +397,7 @@ function App() {
                   ))}
                 </div>
               </div>
-              <button className="scroll-button right" onClick={() => scrollRight(scrollContainerRef2)}>›</button>
+             
             </section>
           </>
         )}
